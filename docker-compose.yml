@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  ia:
+    build: ./ia-python
+    container_name: megasena-ia
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/data
+    restart: always
+
+  backend:
+    build: ./backend-rust
+    container_name: megasena-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - ia
+    restart: always
+
+  frontend:
+    build: ./frontend
+    container_name: megasena-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: always
