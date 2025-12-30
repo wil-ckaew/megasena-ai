@@ -1,3 +1,4 @@
+// frontend/src/components/Resultados.tsx
 type Props = {
   jogos: number[][];
 };
